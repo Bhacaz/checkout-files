@@ -1,6 +1,5 @@
-#!/bin/bash
 
-FILES=${{ inputs.who-to-greet }}
+FILES=${{ inputs.files }}
 
 IFS=' ' read -ra array <<< "$FILES"
 for i in "${array[@]}"
