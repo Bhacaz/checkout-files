@@ -1,0 +1,13 @@
+name: 'outdated-packages'
+description: 'Greet someone and record the time'
+author: 'Bhacaz'
+
+branding:
+  icon: 'download'
+  color: 'green'
+  
+runs:
+  using: "composite"
+  steps: 
+    - run: $/script.sh
+      shell: bash
