@@ -6,6 +6,11 @@ branding:
   icon: 'download'
   color: 'green'
   
+inputs:
+  files:  # id of input
+    description: 'Files to checkout from the repo'
+    required: true
+  
 runs:
   using: "composite"
   steps: 
