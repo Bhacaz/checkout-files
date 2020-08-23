@@ -1,2 +1,12 @@
-# checkout-file
-Github Action checkout only certain files
+# checkout-files
+Github Action to checkout only certain files
+
+## Inputs
+
+**files**
+
+```
+with:
+  files: Gemfile Gemfile.lock .ruby-version
+```
+
