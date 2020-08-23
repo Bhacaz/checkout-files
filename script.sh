@@ -1,4 +1,3 @@
-
 FILES=${{ inputs.files }}
 
 IFS=' ' read -ra array <<< "$FILES"

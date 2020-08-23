@@ -1,4 +1,4 @@
-name: 'outdated-packages'
+name: 'checkout-file'
 description: 'Greet someone and record the time'
 author: 'Bhacaz'
 
@@ -10,17 +10,9 @@ inputs:
   files:  # id of input
     description: 'Files to checkout from the repo'
     required: true
-  
+
 runs:
   using: "composite"
   steps: 
     - shell: bash
-      run: |
-        FILES=${{ inputs.files }}
-
-        IFS=' ' read -ra array <<< "$FILES"
-        for i in "${array[@]}"
-        do
-          echo 'Downloading' $i'...'
-          curl https://raw.githubusercontent.com/"$GITHUB_REPOSITORY"/master/"$i" -s -o "$i"
-        done
+      run: ${{ github.action_path }}/script.sh
