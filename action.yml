@@ -1,13 +1,13 @@
 name: 'checkout-file'
-description: 'Greet someone and record the time'
+description: 'Checkout only certain files'
 author: 'Bhacaz'
 
 branding:
   icon: 'download'
-  color: 'green'
-  
+  color: 'blue'
+
 inputs:
-  files:  # id of input
+  files:
     description: 'Files to checkout from the repo'
     required: true
 
