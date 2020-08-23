@@ -1,5 +1,5 @@
 {
-  "name": "checkout-file",
+  "name": "checkout-files",
   "version": "1.0.0",
   "description": "Github action to checkout only certain files",
   "main": "index.js",
