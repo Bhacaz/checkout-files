@@ -6,6 +6,7 @@ const files = core.getInput('files').split(' ');
 const repository = process.env['GITHUB_REPOSITORY']
 
 function dowloadFile(fileName) {
+    console.log('Downloading ' + fileName + '...')
     const file = fs.createWriteStream(fileName);
     https.get("https://raw.githubusercontent.com/" + repository + '/master/' + fileName, function(response) {
         response.pipe(file);
