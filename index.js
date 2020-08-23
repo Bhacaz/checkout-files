@@ -2,7 +2,7 @@ const core = require('@actions/core');
 const https = require('https');
 const fs = require('fs');
 
-const files = core.getInput('files');
+const files = core.getInput('files').split(' ');
 const repository = process.env['GITHUB_REPOSITORY']
 
 function dowloadFile(fileName) {
