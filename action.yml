@@ -12,7 +12,5 @@ inputs:
     required: true
 
 runs:
-  using: "composite"
-  steps: 
-    - shell: bash
-      run: ${{ github.action_path }}/script.sh
+  using: 'node12'
+  main: 'index.js'
