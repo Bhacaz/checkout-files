@@ -1,0 +1,22 @@
+{
+  "name": "checkout-file",
+  "version": "1.0.0",
+  "description": "Github action to checkout only certain files",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bhacaz/checkout-file.git"
+  },
+  "author": "Bhacaz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Bhacaz/checkout-file/issues"
+  },
+  "homepage": "https://github.com/Bhacaz/checkout-file#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.4"
+  }
+}
