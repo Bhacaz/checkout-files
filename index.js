@@ -1,18 +1,40 @@
 const core = require('@actions/core');
-const https = require('https');
+const github = require('@actions/github');
 const fs = require('fs');
+
+const token = core.getInput('token');
+const octokit = github.getOctokit(token)
 
 const files = core.getInput('files').split(' ');
 const repository = process.env['GITHUB_REPOSITORY']
 
-function dowloadFile(fileName) {
-    console.log('Downloading ' + fileName + '...')
-    const file = fs.createWriteStream(fileName);
-    https.get("https://raw.githubusercontent.com/" + repository + '/master/' + fileName, function(response) {
-        response.pipe(file);
-    });
+const owner = repository.split('/')[0]
+const repo = repository.split('/')[1]
+
+function getContent(path) {
+    octokit.repos.getContent({
+        owner,
+        repo,
+        path,
+    }).then(data => {
+        if (Array.isArray(data.data)) {
+            data.data.forEach(fileData => getContent(fileData.path))
+        } else {
+            saveContent(data.data)
+        }
+    })
 }
 
-for (let file of files) {
-    dowloadFile(file);
+function saveContent(data) {
+    const fileContent = Buffer.from(data.content, 'base64').toString('utf-8');
+    if (data.path.includes('/')) {
+        let foldersPath = data.path.split('/')
+        foldersPath.pop()
+        fs.mkdirSync(foldersPath.join('/'), { recursive: true });
+    }
+    fs.writeFile(data.path, fileContent, err => { if (err) throw err });
 }
+
+files.forEach(file =>{
+    getContent(file)
+})
