@@ -8,6 +8,7 @@ Useful if only need certain file, like config or
 **files**
 
 A list of files with the path relative to the `$GITHUB_WORKSPACE`.
+You can also specify a folder and the action will recessively pull all the files.
 
 ```
 - use: Bhacaz/checkout-files
