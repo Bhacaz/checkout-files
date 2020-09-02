@@ -10,6 +10,9 @@ inputs:
   files:
     description: 'Files to checkout from the repo'
     required: true
+  token:
+    description: 'A Github Private Access Token'
+    required: true
 
 runs:
   using: 'node12'
