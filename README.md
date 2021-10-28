@@ -10,18 +10,20 @@ Useful if only need certain file, like config or
 A list of files with the path relative to the `$GITHUB_WORKSPACE`.
 You can also specify a folder and the action will recessively pull all the files.
 
-```
-- use: Bhacaz/checkout-files
+```yaml
+- name: Check out configuration
+  uses: Bhacaz/checkout-files@v1
   with:
     files: Gemfile Gemfile.lock .ruby-version config
+    token: ${{ github.token }}
 ```
 
 **token**
 
 A Github Private Access Token.
 
-```
-- use: Bhacaz/checkout-files
+```yaml
+- uses: Bhacaz/checkout-files@v1
   with:
     token: ${{ secrets.token }}
 ```
