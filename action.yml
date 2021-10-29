@@ -13,6 +13,10 @@ inputs:
   token:
     description: 'A Github Private Access Token'
     required: true
+  branch:
+    description: 'Branch to checkout files from'
+    required: false
+    default: master
 
 runs:
   using: 'node12'
