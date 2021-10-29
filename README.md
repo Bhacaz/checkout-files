@@ -33,6 +33,6 @@ Checkout the files from a specific branch instead of master.
 ```
 - uses: Bhacaz/checkout-files
   with:
-    branch: ${{ input.branch }}
+    branch: ${{ github.event.inputs.branch }}
 ```
 
