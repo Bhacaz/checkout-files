@@ -13,6 +13,9 @@ const repo = repository.split('/')[1]
 
 function getContent(path) {
     octokit.repos.getContent({
+        mediaType: {
+            format: "raw",
+        },
         owner,
         repo,
         path,
