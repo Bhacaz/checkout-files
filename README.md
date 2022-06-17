@@ -28,3 +28,13 @@ A Github Private Access Token.
     token: ${{ secrets.token }}
 ```
 
+**branch**
+
+Checkout the files from a specific branch instead of master.
+
+```
+- uses: Bhacaz/checkout-files
+  with:
+    branch: ${{ github.event.inputs.branch }}
+```
+

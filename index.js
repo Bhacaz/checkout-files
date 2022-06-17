@@ -10,12 +10,14 @@ const repository = process.env['GITHUB_REPOSITORY']
 
 const owner = repository.split('/')[0]
 const repo = repository.split('/')[1]
+const ref = core.getInput('branch');
 
 function getContent(path) {
     octokit.repos.getContent({
         owner,
         repo,
         path,
+        ref,
     }).then(data => {
         if (Array.isArray(data.data)) {
             data.data.forEach(fileData => getContent(fileData.path))
