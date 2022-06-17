@@ -32,7 +32,7 @@ A Github Private Access Token.
 
 Checkout the files from a specific branch instead of master.
 
-```
+```yaml
 - uses: Bhacaz/checkout-files
   with:
     branch: ${{ github.event.inputs.branch }}
