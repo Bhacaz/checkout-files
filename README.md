@@ -1,40 +1,24 @@
 # checkout-files
-Github Action to checkout only certain files or folders. 
-Useful if only need certain file, like config or
- assets for your workflow, instead of pulling all the repo.
+GitHub Action to checkout only certain files and/or folders.
+Useful if only need certain files, like config or
+assets for your workflow, instead of pulling the whole repo.
+
+## Usage
+
+Minimal setup.
+
+```yaml
+- name: Checkout files
+  uses: Bhacaz/checkout-files@v1
+  with:
+   files: package.json
+   token: ${{ github.token }}
+```
 
 ## Inputs
 
-**files**
-
-A list of files with the path relative to the `$GITHUB_WORKSPACE`.
-You can also specify a folder and the action will recessively pull all the files.
-
-```yaml
-- name: Check out configuration
-  uses: Bhacaz/checkout-files@v1
-  with:
-    files: Gemfile Gemfile.lock .ruby-version config
-    token: ${{ github.token }}
-```
-
-**token**
-
-A Github Private Access Token.
-
-```yaml
-- uses: Bhacaz/checkout-files@v1
-  with:
-    token: ${{ secrets.token }}
-```
-
-**branch**
-
-Checkout the files from a specific branch instead of master.
-
-```yaml
-- uses: Bhacaz/checkout-files
-  with:
-    branch: ${{ github.event.inputs.branch }}
-```
-
+|Name|Description|Required|Default|
+|---|---|---|---|
+|`files`|A list of files with the path separated by a space, relative to root of your repository. Can also be a folder and the action will recursively pull all the files.|`true`|N/A|
+|`token`|A GitHub token. Setting `${{ github.token }}` give acces to the one [automatically generated](https://docs.github.com/en/actions/security-guides/automatic-token-authentication). |`true`|N/A|
+|`branch`|Checkout files from a specific branch.|`false`|`master`|
