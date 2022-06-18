@@ -14,6 +14,9 @@ const ref = core.getInput('branch');
 
 function getContent(path) {
     octokit.repos.getContent({
+        mediaType: {
+            format: 'raw',
+        },
         owner,
         repo,
         path,
