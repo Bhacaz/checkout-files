@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/Bhacaz/checkout-file#readme",
   "dependencies": {
-    "@actions/core": "^1.2.4",
-    "@actions/github": "^4.0.0"
+    "@actions/core": "^1.9.0",
+    "@actions/github": "^5.0.3"
   }
 }
