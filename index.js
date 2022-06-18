@@ -2,10 +2,10 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const fs = require('fs');
 
-const token = core.getInput('token');
+const token = core.getInput('token', { required: true });
 const octokit = github.getOctokit(token)
 
-const files = core.getInput('files').split(' ');
+const files = core.getInput('files', { required: true }).split(' ');
 const repository = process.env['GITHUB_REPOSITORY']
 
 const owner = repository.split('/')[0]
@@ -13,7 +13,7 @@ const repo = repository.split('/')[1]
 const ref = core.getInput('branch');
 
 function getContent(path) {
-    octokit.repos.getContent({
+    octokit.rest.repos.getContent({
         owner,
         repo,
         path,
