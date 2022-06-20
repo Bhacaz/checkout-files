@@ -12,7 +12,7 @@ Minimal setup.
   uses: Bhacaz/checkout-files@v1
   with:
    files: package.json
-   token: ${{ github.token }}
+   token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ## Inputs
