@@ -16,7 +16,6 @@ inputs:
   branch:
     description: 'Branch to checkout files from'
     required: false
-    default: master
 
 runs:
   using: 'node16'
