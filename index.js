@@ -12,13 +12,16 @@ const owner = repository.split('/')[0]
 const repo = repository.split('/')[1]
 const ref = core.getInput('branch');
 
+function getContentParams() {
+    let params = { owner, repo }
+
+    if (ref) { params.ref = ref }
+    return params;
+}
+
 function getContent(path) {
-    octokit.rest.repos.getContent({
-        owner,
-        repo,
-        path,
-        ref,
-    }).then(data => {
+    octokit.rest.repos.getContent({ path, ...getContentParams() })
+        .then(data => {
         if (Array.isArray(data.data)) {
             data.data.forEach(fileData => getContent(fileData.path))
         } else {
@@ -37,6 +40,6 @@ function saveContent(data) {
     fs.writeFile(data.path, fileContent, err => { if (err) throw err });
 }
 
-files.forEach(file =>{
+files.forEach(file => {
     getContent(file)
 })
