@@ -12,7 +12,7 @@ inputs:
     required: true
   token:
     description: 'A Github Private Access Token'
-    required: true
+    default: ${{ github.token }}
   branch:
     description: 'Branch to checkout files from'
     required: false
