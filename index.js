@@ -12,7 +12,7 @@ const owner = repository.split('/')[0]
 const repo = repository.split('/')[1]
 const ref = core.getInput('branch');
 
-function contentParams() {
+function getContentParams() {
     let params = { owner, repo }
 
     if (ref) { params.ref = ref }
@@ -20,7 +20,7 @@ function contentParams() {
 }
 
 function getContent(path) {
-    octokit.rest.repos.getContent({ path, ...contentParams() })
+    octokit.rest.repos.getContent({ path, ...getContentParams() })
         .then(data => {
         if (Array.isArray(data.data)) {
             data.data.forEach(fileData => getContent(fileData.path))
