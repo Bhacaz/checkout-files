@@ -9,7 +9,7 @@ Minimal setup.
 
 ```yaml
 - name: Checkout files
-  uses: Bhacaz/checkout-files@v1
+  uses: Bhacaz/checkout-files@v2
   with:
    files: package.json
 ```
