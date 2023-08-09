@@ -1,4 +1,7 @@
 # checkout-files
+
+⚠️ Please consider using `actions/checkout` with the option [`sparse-checkout`](https://github.com/actions/checkout#fetch-only-a-single-file). 
+
 GitHub Action to checkout only certain files and/or folders.
 Useful if only need certain files, like config or
 assets for your workflow, instead of pulling the whole repo.
