@@ -19,25 +19,43 @@ function getContentParams() {
     return params;
 }
 
-function getContent(path) {
-    octokit.rest.repos.getContent({ path, ...getContentParams() })
-        .then(data => {
-        if (Array.isArray(data.data)) {
-            data.data.forEach(fileData => getContent(fileData.path))
-        } else {
-            saveContent(data.data)
+async function getContent(path) {
+    const { data } = await octokit.rest.repos.getContent({ path, ...getContentParams() });
+    if (Array.isArray(data)) {
+        data.forEach(fileData => getContent(fileData.path))
+    } else {
+        let fileContent = Buffer.from(data.content, 'base64').toString('utf-8');
+        if (fileContent.length === 0 && data.size > 0) {
+            // File was over json content byte limit.
+            // Use the Raw endpoint will provide files data up to 10MB.
+            fileContent = await getRawFile(path);
         }
-    })
+        saveContent({ path, fileContent })
+    }
 }
 
-function saveContent(data) {
-    const fileContent = Buffer.from(data.content, 'base64').toString('utf-8');
-    if (data.path.includes('/')) {
-        let foldersPath = data.path.split('/')
+
+
+async function getRawFile(path) {
+    const { data } = await octokit.rest.repos.getContent({
+        ...getContentParams(),
+        path,
+        mediaType: {
+            format: "raw"
+        },
+    });
+
+    return data;
+}
+
+
+function saveContent({ path, fileContent }) {
+    if (path.includes('/')) {
+        const foldersPath = path.split('/')
         foldersPath.pop()
         fs.mkdirSync(foldersPath.join('/'), { recursive: true });
     }
-    fs.writeFile(data.path, fileContent, err => { if (err) throw err });
+    fs.writeFile(path, fileContent, err => { if (err) throw err });
 }
 
 files.forEach(file => {
